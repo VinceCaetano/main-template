@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  laravel:
+    build:
+      context: ./laravel
+    volumes:
+      - ./laravel:/var/www
+    ports:
+      - "9000:9000"
+    networks:
+      - app-network
+
+  angular:
+    build:
+      context: ./seu-projeto-angular
+    ports:
+      - "4200:4200"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
