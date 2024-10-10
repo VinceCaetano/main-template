@@ -11,8 +11,14 @@ services:
       - ./testeAngular:/app
     environment:
       - CHOKIDAR_USEPOLLING=true
-  
-  # laravel-app:
-  #   image: laravel/laravel
-  #   ports:
-  #     - "8000:80"
+
+  laravel-app:
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./laravel:/var/www/html
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
