@@ -1,24 +1,18 @@
 version: '3.8'
 
 services:
-  laravel:
+  angular-app:
     build:
-      context: ./laravel
-    volumes:
-      - ./laravel:/var/www
-    ports:
-      - "9000:9000"
-    networks:
-      - app-network
-
-  angular:
-    build:
-      context: ./seu-projeto-angular
+      context: ./testeAngular
+      dockerfile: Dockerfile
     ports:
       - "4200:4200"
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+    volumes:
+      - ./testeAngular:/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+  
+  # laravel-app:
+  #   image: laravel/laravel
+  #   ports:
+  #     - "8000:80"
