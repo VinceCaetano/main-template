@@ -3,22 +3,22 @@ version: '3.8'
 services:
   angular-app:
     build:
-      context: ./testeAngular
+      context: ./front
       dockerfile: Dockerfile
     ports:
       - "4200:4200"
     volumes:
-      - ./testeAngular:/app
+      - ./front:/app
     environment:
       - CHOKIDAR_USEPOLLING=true
 
   laravel-app:
     build:
-      context: ./laravel
+      context: ./back
       dockerfile: Dockerfile
     ports:
       - "8000:80"
     volumes:
-      - ./laravel:/var/www/html
+      - ./back:/var/www/html
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/public
